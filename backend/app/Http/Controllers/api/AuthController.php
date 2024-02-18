@@ -21,7 +21,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'failed' => $validator->errors()
+                'error' => $validator->errors()
             ], 422);
         }
 

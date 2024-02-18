@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Article;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,20 +21,25 @@ class User extends Authenticatable
     protected $guarded = ['id'];
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $hidden = [
-        'password',
-        'email_verified_at',
-        'banned_at',
-        'updated_at',
-        'deleted_at',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'email_verified_at',
+    //     'banned_at',
+    //     'updated_at',
+    //     'deleted_at',
+    // ];
 
     public static function boot()
     {
         parent::boot();
         static::creating(function ($self) {
-            $self->id = generateUuid(5, 'WG', 'users');
+            $self->id = generateUuid(5, 'ZX', 'users');
         });
+    }
+
+    public function article(): HasMany
+    {
+        return $this->hasMany(Article::class, 'user_id', 'id');
     }
 
     // cek apakah user di ban
