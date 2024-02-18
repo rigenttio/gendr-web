@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ButtonHref from "../../Elements/ButtonHref";
+import HeaderUser from "../HeaderUser.jsx";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,17 +35,30 @@ const NavBar = () => {
             </NavLink>
           </li>
         </ul>
-        <div className="hidden lg:flex gap-2">
-          <ButtonHref className="bg-white hover:bg-[#fff4fd] text-dark">Masuk</ButtonHref>
+        <div className="hidden lg:flex gap-2 items-center">
+          <ButtonHref to="/login" className=" hover:bg-[#fff4fd] text-dark">
+            Masuk
+          </ButtonHref>
           <ButtonHref>Daftar</ButtonHref>
+
+          {/* <HeaderUser image="assets/default-avatar.svg">Rigent Tio Salma aaaaaaaaaaaa</HeaderUser> */}
         </div>
+
         {/* mobile screen */}
-        <div onClick={toggleMenu} className={`lg:hidden cursor-pointer ${isMenuOpen ? "hidden" : ""}`}>
-          <i className="fa-solid fa-bars text-2xl text-primary"></i>
+        <div className={`flex gap-2 items-center lg:hidden ${isMenuOpen ? "hidden" : ""}`}>
+          <ButtonHref to="/login" className="bg-white hover:bg-[#fff4fd] text-dark">
+            Masuk
+          </ButtonHref>
+
+          {/* <HeaderUser image="assets/default-avatar.svg">Rigent Tio salma arpi</HeaderUser> */}
+
+          <div onClick={toggleMenu} className={`cursor-pointer`}>
+            <i className="fa-solid fa-bars text-2xl text-primary"></i>
+          </div>
         </div>
 
         {isMenuOpen && (
-          <div className="h-screen bg-black bg-opacity-80 absolute inset-0 lg:hidden flex flex-col rounded-b-lg">
+          <div className="h-screen bg-black bg-opacity-80 absolute inset-0 lg:hidden flex flex-col rounded-b-lg z-[9999]">
             <div className="mx-auto container py-8 flex justify-between items-center top-0 w-full">
               <img src="/assets/logo/logogendr.svg" alt="logo" />
               <div onClick={toggleMenu} className={`lg:hidden cursor-pointer}`}>

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BackgroundLong from "../components/Layouts/BackgroundLong";
 import NavBar from "../components/Fragments/NavBar/Index";
 import ButtonHref from "../components/Elements/ButtonHref";
 import { Link } from "react-router-dom";
 import CardStatic from "../components/Fragments/CardStatic";
+import Footer from "../components/Fragments/Footer";
 
 const slides = [
   {
@@ -17,18 +18,17 @@ const slides = [
     image: "/assets/img/test.JPG",
     name: "Ferdi Pratama",
     label: "Mahasiswa Universitas Amikom Yogyakarta",
-    deskripsi: `lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    deskripsi: `Di dalam lingkungan yang mempromosikan kesetaraan gender, laki-laki juga dapat menikmati manfaatnya. Masyarakat yang menerapkan prinsip kesetaraan gender cenderung lebih damai, produktif, dan inovatif karena menghargai kontribusi dari seluruh anggotanya tanpa memandang jenis kelamin. Hal ini menciptakan lingkungan kerja yang lebih beragam, di mana ide-ide baru dapat berkembang dan solusi yang lebih efektif dapat ditemukan.`,
   },
   {
     image: "/assets/img/test.JPG",
     name: "Akbar Setiawan",
     label: "Mahasiswa Universitas Amikom Yogyakarta",
-    deskripsi: `Perempuan, seperti setiap individu lainnya, memiliki hak yang mendasar dan tak terbantahkan untuk menjalani hidup tanpa ketakutan dan tanpa menjadi korban kekerasan atau pelecehan. Kesetaraan gender bukan hanya sekadar
-          panggilan untuk pemberian hak, tetapi merupakan komitmen kolektif untuk menciptakan lingkungan di mana perempuan dapat hidup dan berkembang tanpa rasa takut atau perlakuan tidak adil.`,
+    deskripsi: `Dengan menciptakan ruang yang memungkinkan perempuan untuk tumbuh dan berkembang sesuai potensi mereka, kita secara bertahap melangkah menuju masyarakat yang lebih inklusif dan berkeadilan, di mana setiap individu memiliki hak yang sama untuk mencapai impian dan ambisi mereka tanpa hambatan yang tidak perlu. Kita melihat hasil yang lebih baik, baik dalam ekonomi, pendidikan, maupun kesehatan, ketika perempuan memiliki kesempatan yang setara dan diperlakukan dengan adil.`,
   },
 ];
 
-const Beranda = () => {
+const BerandaPage = () => {
   const [curr, setCurr] = useState(0);
 
   const prev = () => {
@@ -38,11 +38,16 @@ const Beranda = () => {
   const next = () => {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
   };
+
+  useEffect(() => {
+    const slideInterval = setInterval(next, 10000);
+    return () => clearInterval(slideInterval);
+  }, []);
   return (
     <BackgroundLong>
       <NavBar />
 
-      <div className="container mx-auto ">
+      <div className="container mx-auto">
         <div className="grid grid-cols-12 max-w-[1700px] items-center py-[22px] lg:py-[72px]">
           <div className="lg:col-span-6 col-span-12">
             <div className="w-full lg:max-w-[497px]">
@@ -53,7 +58,12 @@ const Beranda = () => {
             </div>
             <div className="mt-[43px] flex flex-col gap-4 lg:flex-row text-center">
               <ButtonHref>Baca Artikel</ButtonHref>
-              <Link target="_blank" rel="noopener noreferrer" to={"https://youtu.be/24v7oNI70II?si=kRBslKq3JGsmIZ1g"} className="flex gap-2 py-4 px-8 rounded-full font-bold bg-white border items-center justify-center hover:bg-[#fff4fd]">
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                to={"https://youtu.be/24v7oNI70II?si=kRBslKq3JGsmIZ1g"}
+                className="flex gap-2 py-4 px-8 rounded-full font-bold bg-white border items-center justify-center hover:bg-[#fff4fd] transition-colors"
+              >
                 <img src="/assets/icon/play.svg" alt="" /> Tonton Video
               </Link>
             </div>
@@ -113,7 +123,7 @@ const Beranda = () => {
         </div>
       </div>
 
-      <div className="container mx-auto h-screen mt-[84px] ">
+      <div className="container mx-auto min-h-screen mt-[84px] mb-[150px] ">
         <div className="flex justify-center">
           <h2 className="font-bold text-3xl lg:text-5xl text-center pt-20 pb-16 inline-block">
             Sudut Pandang <span className="text-primary">Mereka</span>
@@ -145,10 +155,18 @@ const Beranda = () => {
               <img src="/assets/icon/slide-right.svg" alt="" />
             </button>
           </div>
+          <div className="absolute right-1/2 translate-x-1/2 -bottom-8">
+            <div className="flex gap-2">
+              {slides.map((_, i) => (
+                <div key={i} className={`transition-all w-3 h-3 rounded-full ${curr === i ? "bg-primary" : "bg-gray-300"}`}></div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+      <Footer />
     </BackgroundLong>
   );
 };
 
-export default Beranda;
+export default BerandaPage;

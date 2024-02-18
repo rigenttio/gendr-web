@@ -6,3 +6,19 @@
 * {
   @apply font-poppins text-dark;
 }
+
+.input-inner-shadow {
+  --shadow1: inset -2px -2px 4px 0 rgba(255, 255, 255, 0.5);
+  --shadow2: inset 2px 2px 4px 0 rgba(170, 170, 204, 0.25);
+  --shadow3: inset 5px 5px 10px 0 rgba(170, 170, 204, 0.5);
+  --shadow4: inset -5px -5px 10px 0 rgba(255, 255, 255, 1);
+
+  box-shadow: var(--shadow1), var(--shadow2), var(--shadow3), var(--shadow4);
+}
+
+.shadow-button {
+  --shadow1: 5px 5px 10px 0 rgba(170, 170, 204, 0.5);
+  --shadow2: -5px -5px 10px 0 rgba(255, 255, 255, 1);
+
+  box-shadow: var(--shadow1), var(--shadow2);
+}
