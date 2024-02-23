@@ -33,7 +33,7 @@ const Sidebar = () => {
   return (
     <aside className="w-[17vw] h-screen bg-[#FFD7F1]/50 filter backdrop-blur-[160px] overflow-y-scroll py-16">
       <div className="flex gap-3 items-center justify-start mx-6">
-        <img src="assets/default-avatar.svg" alt="avatar" className="w-12 h-12 object-cover object-center rounded-full" />
+        <img src={authUser.avatar ? authUser.avatar : "assets/default-avatar.svg"} alt="avatar" className="w-12 h-12 object-cover object-center rounded-full" />
         <p className="font-medium text-sm truncate">{authUser.username}</p>
       </div>
       <hr className="h-[1px] bg-primary my-4" />

@@ -39,7 +39,9 @@ const NavBar = () => {
         </ul>
         <div className="hidden lg:flex gap-2 items-center">
           {isLoggedIn ? (
-            <HeaderUser image="assets/default-avatar.svg">{authUser.nama}</HeaderUser>
+            <HeaderUser to="/dashboard" image={authUser.avatar ? authUser.avatar : "assets/default-avatar.svg"}>
+              {authUser.nama}
+            </HeaderUser>
           ) : (
             <>
               <ButtonHref to="/login" className="hover:bg-[#fff4fd] text-dark">
@@ -48,8 +50,6 @@ const NavBar = () => {
               <ButtonHref>Daftar</ButtonHref>
             </>
           )}
-
-          {/* <HeaderUser image="assets/default-avatar.svg">Rigent Tio Salma aaaaaaaaaaaa</HeaderUser> */}
         </div>
 
         {/* mobile screen */}
