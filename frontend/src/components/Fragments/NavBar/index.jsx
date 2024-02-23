@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ButtonHref from "../../Elements/ButtonHref";
 import HeaderUser from "../HeaderUser.jsx";
+import { useAuth } from "../../../context/AuthContext.jsx";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { authUser, isLoggedIn } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -36,10 +38,16 @@ const NavBar = () => {
           </li>
         </ul>
         <div className="hidden lg:flex gap-2 items-center">
-          <ButtonHref to="/login" className=" hover:bg-[#fff4fd] text-dark">
-            Masuk
-          </ButtonHref>
-          <ButtonHref>Daftar</ButtonHref>
+          {isLoggedIn ? (
+            <HeaderUser image="assets/default-avatar.svg">{authUser.nama}</HeaderUser>
+          ) : (
+            <>
+              <ButtonHref to="/login" className="hover:bg-[#fff4fd] text-dark">
+                Masuk
+              </ButtonHref>
+              <ButtonHref>Daftar</ButtonHref>
+            </>
+          )}
 
           {/* <HeaderUser image="assets/default-avatar.svg">Rigent Tio Salma aaaaaaaaaaaa</HeaderUser> */}
         </div>

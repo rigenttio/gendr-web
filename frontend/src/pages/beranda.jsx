@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BackgroundLong from "../components/Layouts/BackgroundLong";
 import NavBar from "../components/Fragments/NavBar/Index";
 import ButtonHref from "../components/Elements/ButtonHref";
 import { Link } from "react-router-dom";
 import CardStatic from "../components/Fragments/CardStatic";
 import Footer from "../components/Fragments/Footer";
+import { AuthContext } from "../context/AuthContext";
 
 const slides = [
   {

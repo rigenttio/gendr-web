@@ -22,3 +22,45 @@
 
   box-shadow: var(--shadow1), var(--shadow2);
 }
+
+/* width */
+aside::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+aside::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+aside::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+aside:hover::-webkit-scrollbar-thumb {
+  background: #b4b5b9;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

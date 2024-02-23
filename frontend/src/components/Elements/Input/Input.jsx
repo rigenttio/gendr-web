@@ -1,9 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
   const { type, placeholder, name } = props;
   return (
     <input
+      ref={ref}
       autoComplete="off"
       type={type}
       name={name}
@@ -12,6 +13,6 @@ const Input = (props) => {
       placeholder={placeholder}
     />
   );
-};
+});
 
 export default Input;
