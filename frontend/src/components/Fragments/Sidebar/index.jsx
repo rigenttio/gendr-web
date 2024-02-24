@@ -5,6 +5,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { axiosInstance } from "../../../lib/axios";
 import Cookies from "universal-cookie";
 import toast from "react-hot-toast";
+import Verified from "../../Elements/Verified";
 
 const Sidebar = () => {
   const { authUser, setIsLoggedIn } = useAuth();
@@ -34,7 +35,10 @@ const Sidebar = () => {
     <aside className="w-[17vw] h-screen bg-[#FFD7F1]/50 filter backdrop-blur-[160px] overflow-y-scroll py-16">
       <div className="flex gap-3 items-center justify-start mx-6">
         <img src={authUser.avatar ? authUser.avatar : "assets/default-avatar.svg"} alt="avatar" className="w-12 h-12 object-cover object-center rounded-full" />
-        <p className="font-medium text-sm truncate">{authUser.username}</p>
+        <div className="gap-1 flex items-center truncate">
+          <p className="font-medium text-sm truncate">{authUser.nama}</p>
+          {authUser.verified_at && <Verified size="12" />}
+        </div>
       </div>
       <hr className="h-[1px] bg-primary my-4" />
       <div className="bg-white pt-6 px-4 pb-4 mx-6 rounded-[28px] text-center">

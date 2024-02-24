@@ -16,35 +16,6 @@ const AuthProvider = ({ children }) => {
   const token = cookies.get("access_token");
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   getUserMe(token);
-  // }, [token]);
-  // useEffect(() => {
-  //   const token = cookies.get("access_token");
-  //   if (token) {
-  //     getUserMe(token);
-  //   }
-  // }, []);
-
-  // const getUserMe = async (token) => {
-  //   try {
-  //     const response = await axiosInstance.get("/me", {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     setAuthUser(response.data.data);
-  //     // setIsLoggedIn(true);
-  //   } catch (error) {
-  //     console.log(error);
-  //     // setAuthUser([null]);
-  //     // setIsLoggedIn(false);
-  //     // navigate("/login");
-  //   }
-  // };
-
-  // // console.log(isLoggedIn);
-
   useEffect(() => {
     const getUserMe = async (token) => {
       try {
@@ -58,10 +29,10 @@ const AuthProvider = ({ children }) => {
       } catch (error) {
         console.log(error);
         cookies.remove("access_token");
-        setAuthUser(null); // Jika gagal, set data pengguna menjadi null
+        setAuthUser(null);
         setIsLoggedIn(false);
       } finally {
-        setIsLoading(false); // Set isLoading menjadi false setelah selesai memuat data
+        setIsLoading(false);
       }
     };
 

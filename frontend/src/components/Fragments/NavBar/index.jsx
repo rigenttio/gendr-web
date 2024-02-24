@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ButtonHref from "../../Elements/ButtonHref";
-import HeaderUser from "../HeaderUser.jsx";
+import HeaderUser from "../HeaderUser/index.jsx";
 import { useAuth } from "../../../context/AuthContext.jsx";
 
 const NavBar = () => {
